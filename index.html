@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central de atendimento ao Paciente</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* --- CORES ATUALIZADAS --- */
+            --primary-blue-dark: #1e88e5; /* Azul mais escuro */
+            --primary-blue: #64b5f6;      /* Azul claro principal */
+            /* --- FIM DAS CORES ATUALIZADAS --- */
+
+            --whatsapp-green: #25D366;    /* Mantido */
+            --light-gray: #f8f9fa;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-primary);
+        }
+
+        /* --- Animações --- */
+        .fade-in-section { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); } 60% { transform: translateY(-5px); } }
+        @keyframes whatsapp-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            80% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* --- Navbar --- */
+        .navbar { transition: all 0.4s ease-out; }
+        .navbar.scrolled { background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .nav-link { font-weight: 500; }
+        .navbar-brand { color: var(--primary-blue-dark) !important; /* Ajuste para o azul escuro */ }
+        .btn-nav-cta {
+            background-color: var(--primary-blue); /* Azul claro */
+            color: white; border-radius: 50px; padding: 8px 25px; transition: all 0.3s; font-weight: 500;
+        }
+        .btn-nav-cta:hover {
+            background-color: var(--primary-blue-dark); /* Azul escuro */
+            color: white; transform: scale(1.05);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            position: relative;
+            height: 90vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white;
+            background-image: url('https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover; background-position: center;
+        }
+        .hero-section::before { /* Overlay azul */
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(30, 136, 229, 0.75); /* Azul escuro com transparência */
+            z-index: 2;
+        }
+        .hero-content { position: relative; z-index: 3; animation: 1s fadeInUp ease-out; }
+        .hero-content h1 { font-weight: 700; font-size: 3.5rem; }
+        .hero-content p { font-size: 1.25rem; font-weight: 400; max-width: 650px; margin: 20px auto; }
+        .scroll-indicator {
+            position: absolute; bottom: 30px; z-index: 3;
+            font-size: 1.5rem; animation: 1.5s infinite bounce;
+        }
+
+        /* --- Seções e Títulos --- */
+        section { padding: 80px 0; }
+        .section-title { font-weight: 700; color: var(--primary-blue-dark); /* Títulos em azul escuro */ }
+        .section-subtitle { font-size: 1.1rem; max-width: 600px; margin: 15px auto; }
+
+        /* --- BOTÕES PRIMÁRIOS COM ESTILO "CLIQUE AQUI" --- */
+        .primary-actions-section { padding-top: 0; margin-top: -80px; position: relative; z-index: 10; }
+        .primary-action-btn {
+            background-color: white; color: var(--text-primary); text-decoration: none;
+            display: flex; align-items: center; padding: 1.5rem; border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease;
+        }
+        .primary-action-btn:hover {
+            transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            color: var(--primary-blue); /* Texto fica azul claro no hover */
+        }
+        .primary-action-btn .icon {
+            font-size: 2.5rem; margin-right: 1.25rem;
+            color: var(--primary-blue); /* Ícone em azul claro */
+        }
+        .primary-action-btn .text-content { flex-grow: 1; }
+        .primary-action-btn h4 { font-size: 1.2rem; font-weight: 600; }
+        .primary-action-btn .arrow-icon {
+            font-size: 1.8rem;
+            color: var(--primary-blue); /* Seta em azul claro */
+            opacity: 0.5; transition: all 0.3s ease;
+        }
+        .primary-action-btn:hover .arrow-icon {
+            opacity: 1; transform: translateX(5px);
+        }
+
+        /* --- Como Funciona --- */
+        .how-it-works-section { background-color: var(--light-gray); }
+        .step-card { text-align: center; }
+        .step-icon {
+            width: 80px; height: 80px; background-color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem auto; font-size: 2rem;
+            color: var(--primary-blue); /* Ícone do passo em azul claro */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        /* Para o número 1, que não é ícone */
+        .step-icon:not(:has(i)) {
+            background-color: var(--primary-blue); /* Fundo azul claro */
+            color: white; /* Número branco */
+        }
+
+        /* --- Seção de Confiança --- */
+        .trust-section {
+            background-color: var(--primary-blue-dark); /* Fundo azul escuro */
+            color: white;
+        }
+        .trust-section .section-title { color: white; } /* Título branco */
+        .trust-section .icon {
+            font-size: 3rem;
+            color: var(--primary-blue); /* Ícones em azul claro para contraste */
+        }
+        .trust-section h4 { color: white; } /* Subtítulos brancos */
+        .trust-section p { color: rgba(255, 255, 255, 0.8); } /* Texto um pouco transparente */
+
+        /* --- CTA Final --- */
+        .cta-section { background-color: var(--light-gray); }
+        .btn-cta-final {
+            background-color: var(--primary-blue); /* Azul claro */
+            color: white; border-radius: 50px; padding: 15px 40px; font-weight: 600; font-size: 1.2rem;
+        }
+        .btn-cta-final:hover {
+            background-color: var(--primary-blue-dark); /* Azul escuro */
+        }
+
+        /* --- Footer --- */
+        .footer { background-color: white; border-top: 1px solid #dee2e6; }
+        .footer a { text-decoration: none; color: var(--text-secondary); }
+
+        /* --- Banner de Cookies --- */
+        .cookie-banner {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background-color: var(--primary-blue-dark); /* Fundo azul escuro */
+            color: white; padding: 1rem; z-index: 1050;
+            transition: transform 0.5s ease-in-out; transform: translateY(120%);
+        }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-banner a { color: #b3e5fc; /* Azul bem claro para link */ text-decoration: underline;}
+
+        /* --- BOTÃO FLUTUANTE WHATSAPP --- */
+        #whatsapp-button {
+            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
+            background-color: var(--whatsapp-green); /* Mantido verde */
+            color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 999;
+            text-decoration: none; transition: all 0.4s ease; opacity: 0; transform: scale(0);
+            animation: whatsapp-pulse 2s infinite 2s;
+        }
+        #whatsapp-button.visible { opacity: 1; transform: scale(1); }
+        #whatsapp-button:hover {
+            transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            animation-play-state: paused;
+        }
+
+        /* --- AJUSTES PARA DISPOSITIVOS MÓVEIS --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1.1rem; }
+            .hero-section { height: 85vh; }
+            section { padding: 60px 0; }
+            .primary-actions-section { margin-top: -60px; }
+            .primary-action-btn h4 { font-size: 1.1rem; }
+            .section-title { font-size: 1.8rem; }
+            .step-card { margin-bottom: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-shield-check me-2"></i>Central de Atendimento
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link mx-2" href="#comofunciona">Como Funciona</a></li>
+                    <li class="nav-item"><a class="nav-link mx-2" href="#seguranca">Segurança</a></li>
+                    <li class="nav-item ms-3"><a class="btn btn-nav-cta" href="#acoes">Iniciar Atendimento</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="display-3">Sua tranquilidade financeira, descomplicada.</h1>
+            <p>Resolva suas pendências do plano de saúde de forma rápida, segura e humana, diretamente pelo WhatsApp.</p>
+        </div>
+        <div class="scroll-indicator text-white"><i class="bi bi-mouse"></i></div>
+    </header>
+
+    <main>
+        <section id="acoes" class="primary-actions-section fade-in-section">
+            <div class="container">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-lg-5 col-md-6">
+                        <a href="https://wa.me/5511948781812?text=Ol%C3%A1!%20Gostaria%20de%20regularizar%20uma%20mensalidade%20em%20atraso." target="_blank" class="primary-action-btn">
+                            <div class="icon"><i class="bi bi-shield-check"></i></div>
+                            <div class="text-content">
+                                <h4 class="mb-0">Mensalidades em Atraso</h4>
+                                <p class="mb-0 small text-secondary">Negocie com condições especiais</p>
+                            </div>
+                            <div class="arrow-icon ms-auto"><i class="bi bi-arrow-right-circle-fill"></i></div>
+                        </a>
+                    </div>
+                    <div class="col-lg-5 col-md-6">
+                         <a href="https://wa.me/5511948781812?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20atendente." target="_blank" class="primary-action-btn">
+                            <div class="icon"><i class="bi bi-headset"></i></div>
+                            <div class="text-content">
+                                <h4 class="mb-0">Fale Conosco</h4>
+                                <p class="mb-0 small text-secondary">2ª via, dúvidas e suporte</p>
+                            </div>
+                            <div class="arrow-icon ms-auto"><i class="bi bi-arrow-right-circle-fill"></i></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comofunciona" class="how-it-works-section fade-in-section">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">É simples, rápido e humano</h2>
+                    <p class="section-subtitle text-secondary">Em apenas 3 passos, sua situação está resolvida.</p>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-4 step-card">
+                        <div class="step-icon">1</div>
+                        <h4 class="fw-bold">Escolha o Serviço</h4>
+                        <p class="text-secondary">Clique na opção que você precisa: negociação ou suporte geral.</p>
+                    </div>
+                    <div class="col-md-4 step-card">
+                        <div class="step-icon"><i class="bi bi-whatsapp"></i></div>
+                        <h4 class="fw-bold">Converse no WhatsApp</h4>
+                        <p class="text-secondary">Você será direcionado para um de nossos especialistas, sem robôs ou esperas.</p>
+                    </div>
+                    <div class="col-md-4 step-card">
+                        <div class="step-icon"><i class="bi bi-check2-circle"></i></div>
+                        <h4 class="fw-bold">Resolvido!</h4>
+                        <p class="text-secondary">Receba seu boleto ou as condições de negociação e finalize tudo na hora.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="seguranca" class="trust-section fade-in-section">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title text-white">Sua segurança em primeiro lugar</h2>
+                </div>
+                <div class="row g-5 text-center">
+                    <div class="col-md-4">
+                        <div class="icon mb-3"><i class="bi bi-lock"></i></div>
+                        <h4 class="fw-bold">Dados Protegidos</h4>
+                        <p>Utilizamos criptografia de ponta para garantir a segurança de suas informações.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="icon mb-3"><i class="bi bi-people"></i></div>
+                        <h4 class="fw-bold">Atendimento Humano</h4>
+                        <p>Nossa equipe está preparada para entender seu caso e oferecer a melhor solução.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="icon mb-3"><i class="bi bi-phone"></i></div>
+                        <h4 class="fw-bold">Praticidade Total</h4>
+                        <p>Resolva tudo pelo celular, de onde estiver, sem precisar de ligações ou papéis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section text-center fade-in-section">
+            <div class="container">
+                <h2 class="section-title">Precisa de outro tipo de ajuda?</h2>
+                <p class="section-subtitle text-secondary">Nossa equipe de suporte geral está pronta para te atender. Clique abaixo e fale conosco.</p>
+                 <a href="https://wa.me/5511948781812?text=Ol%C3%A1!%20Preciso%20de%20ajuda." target="_blank" class="btn btn-cta-final shadow">Falar com Atendente</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer py-4">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <p class="mb-2 mb-md-0">&copy; 2025 Central de Atendimento. Todos os direitos reservados.</p>
+             <a href="politica-de-privacidade.html" class="small">Política de Privacidade</a>
+        </div>
+    </footer>
+
+     <a href="https://wa.me/5511948781812?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20atendente."
+       id="whatsapp-button"
+       target="_blank"
+       aria-label="Fale conosco pelo WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <div class="cookie-banner" id="cookie-banner">
+        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <p class="mb-2 mb-md-0 me-md-4">Usamos cookies para otimizar sua experiência. Ao continuar, você concorda com nossa <a href="politica-de-privacidade.html">Política de Privacidade</a>.</p>
+            <button id="accept-cookies" class="btn btn-sm btn-light flex-shrink-0">Entendi</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mesmo JavaScript da versão anterior (sem mudanças)
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            const whatsappButton = document.getElementById('whatsapp-button');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+
+                if (window.scrollY > 300) {
+                    whatsappButton.classList.add('visible');
+                } else {
+                    whatsappButton.classList.remove('visible');
+                }
+            });
+
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            sections.forEach(section => observer.observe(section));
+
+            (function() {
+                const cookieBanner = document.getElementById('cookie-banner');
+                const acceptButton = document.getElementById('accept-cookies');
+
+                if (localStorage.getItem('cookiesAccepted_v1') !== 'true') {
+                    setTimeout(() => { cookieBanner.classList.add('show'); }, 2000);
+                }
+
+                acceptButton.addEventListener('click', function() {
+                    localStorage.setItem('cookiesAccepted_v1', 'true');
+                    cookieBanner.classList.remove('show');
+                });
+            })();
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        // Calcula offset do header fixo
+                        const headerOffset = navbar.offsetHeight || 70;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                             top: offsetPosition,
+                             behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
