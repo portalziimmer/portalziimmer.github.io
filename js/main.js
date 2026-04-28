@@ -24,15 +24,15 @@
             var el = links[i];
             var waText = el.getAttribute('data-wa-text');
             if (waText) {
-              el.href = 'https://wa.me/55' + numero + '?text=' + waText;
+              el.href = 'https://wa.me/5511925720427?text=' + waText;
             } else {
-              el.href = 'https://wa.me/55' + numero;
+              el.href = 'https://wa.me/5511925720427;
             }
           }
           // Atualizar o botão flutuante do WhatsApp também
           var floatBtn = document.querySelector('.whatsapp-float');
           if (floatBtn) {
-            floatBtn.href = 'https://wa.me/55' + numero;
+            floatBtn.href = 'https://wa.me/5511925720427;
           }
         }
       })
