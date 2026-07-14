@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="Central de Atendimento - Suporte seguro e confiável via WhatsApp. Solicite atendimento, 2ª via de boleto e suporte técnico com total transparência."/>
+<title>Central de Atendimento Profissional | Suporte via WhatsApp</title>
+
+<style>
+:root{
+  --primary:#16b45f;
+  --primary2:#0f9b4c;
+  --primary3:#0d7a3a;
+  --text:#0f172a;
+  --text-light:#475569;
+  --muted:#6b7280;
+  --border:#e2e8f0;
+  --shadow:0 18px 50px rgba(2,6,23,.18);
+  --shadow-sm:0 4px 12px rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:#ffffff;
+  color:var(--text);
+  line-height:1.6;
+}
+
+.container{max-width:1200px;margin:auto;padding:0 20px}
+
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#ffffff 0%,#f8fafb 100%);
+  border-bottom:1px solid var(--border);
+  padding:20px 0;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+
+.header-content{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo-section{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.logo-text h1{
+  margin:0;
+  font-size:24px;
+  font-weight:800;
+  color:var(--primary);
+  letter-spacing:-0.5px;
+}
+
+.logo-text span{
+  font-size:12px;
+  color:var(--muted);
+  display:block;
+  margin-top:2px;
+}
+
+.trust-badge{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 16px;
+  background:rgba(22,180,95,.08);
+  border-radius:999px;
+  border:1px solid rgba(22,180,95,.2);
+  font-size:12px;
+  color:var(--primary2);
+  font-weight:600;
+}
+
+.trust-badge svg{
+  width:16px;
+  height:16px;
+}
+
+/* HERO */
+.hero{
+  padding:80px 0;
+  background:linear-gradient(135deg,#f8fafb 0%,#f0fdf4 100%);
+  border-bottom:1px solid var(--border);
+}
+
+.hero-content{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:48px;
+  align-items:center;
+}
+
+.hero-text h2{
+  font-size:42px;
+  margin:0 0 16px 0;
+  color:var(--text);
+  line-height:1.2;
+}
+
+.hero-text .highlight{
+  background:linear-gradient(135deg,var(--primary2),var(--primary));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.hero-text p{
+  font-size:16px;
+  color:var(--text-light);
+  margin:0 0 24px 0;
+  line-height:1.7;
+}
+
+.cta-primary{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:16px 32px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--primary2),var(--primary));
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow:0 12px 32px rgba(22,180,95,.35);
+  transition:all 0.3s ease;
+  border:none;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.cta-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 40px rgba(22,180,95,.45);
+}
+
+.cta-primary:active{
+  transform:translateY(0);
+}
+
+.cta-primary svg{
+  width:20px;
+  height:20px;
+}
+
+.hero-cards{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.service-card{
+  background:#fff;
+  padding:20px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+  text-decoration:none;
+  color:var(--text);
+  transition:all 0.3s ease;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.service-card:hover{
+  border-color:var(--primary);
+  box-shadow:0 8px 24px rgba(22,180,95,.15);
+  transform:translateX(4px);
+}
+
+.service-card-content{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex:1;
+}
+
+.service-icon{
+  width:40px;
+  height:40px;
+  border-radius:10px;
+  background:rgba(22,180,95,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  flex-shrink:0;
+}
+
+.service-card-text strong{
+  display:block;
+  font-weight:700;
+  font-size:15px;
+  margin-bottom:4px;
+}
+
+.service-card-text span{
+  font-size:13px;
+  color:var(--muted);
+}
+
+.service-card-arrow{
+  color:var(--primary);
+  font-weight:700;
+  font-size:18px;
+  transition:transform 0.3s ease;
+}
+
+.service-card:hover .service-card-arrow{
+  transform:translateX(4px);
+}
+
+/* TRUST SECTION */
+.trust-section{
+  padding:60px 0;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+}
+
+.section-title{
+  text-align:center;
+  font-size:32px;
+  margin:0 0 48px 0;
+  color:var(--text);
+}
+
+.trust-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+
+.trust-item{
+  background:linear-gradient(135deg,#f8fafb 0%,#f0fdf4 100%);
+  padding:32px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  text-align:center;
+}
+
+.trust-item-icon{
+  font-size:40px;
+  margin-bottom:16px;
+}
+
+.trust-item strong{
+  display:block;
+  font-size:18px;
+  margin-bottom:12px;
+  color:var(--text);
+}
+
+.trust-item p{
+  color:var(--text-light);
+  margin:0;
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* TEAM SECTION */
+.team-section{
+  padding:80px 0;
+  background:linear-gradient(135deg,#f8fafb 0%,#ffffff 100%);
+  border-bottom:1px solid var(--border);
+}
+
+.team-content{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:48px;
+  align-items:center;
+}
+
+.team-image{
+  height:420px;
+  border-radius:16px;
+  background-size:cover;
+  background-position:center;
+  box-shadow:0 20px 50px rgba(22,180,95,.2);
+  overflow:hidden;
+}
+
+.team-text h3{
+  font-size:36px;
+  margin:0 0 16px 0;
+  color:var(--text);
+}
+
+.team-text .subtitle{
+  font-size:16px;
+  color:var(--primary2);
+  font-weight:700;
+  margin-bottom:24px;
+}
+
+.team-text p{
+  color:var(--text-light);
+  margin:0 0 24px 0;
+  line-height:1.7;
+}
+
+.team-list{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.team-item{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+}
+
+.team-check{
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:14px;
+  flex-shrink:0;
+  margin-top:2px;
+}
+
+.team-item strong{
+  display:block;
+  font-size:15px;
+  margin-bottom:4px;
+}
+
+.team-item span{
+  color:var(--text-light);
+  font-size:14px;
+}
+
+/* FEATURES SECTION */
+.features-section{
+  padding:80px 0;
+  background:linear-gradient(135deg,#f8fafb 0%,#ffffff 100%);
+}
+
+.features-content{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:48px;
+  align-items:center;
+}
+
+.features-text h3{
+  font-size:36px;
+  margin:0 0 16px 0;
+  color:var(--text);
+}
+
+.features-text .subtitle{
+  font-size:16px;
+  color:var(--primary2);
+  font-weight:700;
+  margin-bottom:24px;
+}
+
+.features-text p{
+  color:var(--text-light);
+  margin:0 0 24px 0;
+  line-height:1.7;
+}
+
+.features-list{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.feature-item{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+}
+
+.feature-check{
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:14px;
+  flex-shrink:0;
+  margin-top:2px;
+}
+
+.feature-item strong{
+  display:block;
+  font-size:15px;
+  margin-bottom:4px;
+}
+
+.feature-item span{
+  color:var(--text-light);
+  font-size:14px;
+}
+
+.features-image{
+  height:380px;
+  border-radius:16px;
+  background:linear-gradient(135deg,var(--primary2),var(--primary));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:18px;
+  box-shadow:0 20px 50px rgba(22,180,95,.2);
+  position:relative;
+  overflow:hidden;
+  background-size:cover;
+  background-position:center;
+}
+
+.features-image::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background:rgba(15,155,76,.3);
+  z-index:1;
+}
+
+.features-image-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+}
+
+/* STATS SECTION */
+.stats-section{
+  padding:60px 0;
+  background:#0b1220;
+  color:#fff;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+  text-align:center;
+}
+
+.stat-item strong{
+  display:block;
+  font-size:42px;
+  margin-bottom:8px;
+  color:var(--primary);
+}
+
+.stat-item span{
+  display:block;
+  font-size:16px;
+  color:rgba(255,255,255,.75);
+}
+
+/* VALUES SECTION */
+.values-section{
+  padding:80px 0;
+  background:#fff;
+  border-top:1px solid var(--border);
+}
+
+.values-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+
+.value-box{
+  background:linear-gradient(135deg,#f8fafb 0%,#f0fdf4 100%);
+  padding:32px;
+  border-radius:16px;
+  border:1px solid var(--border);
+}
+
+.value-box strong{
+  display:block;
+  font-size:18px;
+  margin-bottom:12px;
+  color:var(--text);
+}
+
+.value-box p{
+  color:var(--text-light);
+  margin:0;
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* CTA SECTION */
+.cta-section{
+  padding:80px 0;
+  background:linear-gradient(135deg,var(--primary2),var(--primary));
+  text-align:center;
+  color:#fff;
+}
+
+.cta-section h2{
+  font-size:36px;
+  margin:0 0 16px 0;
+}
+
+.cta-section p{
+  font-size:18px;
+  margin:0 0 32px 0;
+  opacity:0.95;
+  line-height:1.6;
+}
+
+.cta-secondary{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:16px 32px;
+  border-radius:12px;
+  background:#fff;
+  color:var(--primary2);
+  font-weight:700;
+  text-decoration:none;
+  transition:all 0.3s ease;
+  border:none;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.cta-secondary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 32px rgba(0,0,0,.2);
+}
+
+/* FOOTER */
+footer{
+  background:#0f172a;
+  color:rgba(255,255,255,.7);
+  padding:40px 0;
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,.1);
+  font-size:14px;
+}
+
+footer strong{
+  color:#fff;
+}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-content,.features-content,.team-content,.trust-grid,.stats-grid,.values-grid{
+    grid-template-columns:1fr;
+  }
+  
+  .hero-text h2{font-size:36px}
+  .section-title{font-size:28px}
+  .features-text h3{font-size:28px}
+  .team-text h3{font-size:28px}
+  .cta-section h2{font-size:28px}
+  
+  .features-image{height:300px}
+  .team-image{height:300px}
+}
+
+@media(max-width:768px){
+  .header-content{flex-direction:column;gap:16px}
+  .trust-badge{width:100%}
+  
+  .hero{padding:60px 0}
+  .hero-text h2{font-size:28px}
+  .hero-text p{font-size:15px}
+  
+  .hero-cards{gap:10px}
+  .service-card{padding:16px}
+  
+  .trust-item{padding:24px}
+  .features-list{gap:12px}
+  .team-list{gap:12px}
+  
+  .stats-grid{gap:24px}
+  .stat-item strong{font-size:32px}
+  
+  .cta-section{padding:60px 0}
+  .cta-section h2{font-size:24px}
+  .cta-section p{font-size:16px}
+}
+</style>
+</head>
+
+<body>
+
+<script>
+  /** 
+   * CONFIGURAÇÃO DOS NÚMEROS DE WHATSAPP
+   * Altere cada número abaixo individualmente para cada botão do site.
+   * Use o formato: código do país + DDD + número (ex: 5521979291197)
+   */
+  const WHATSAPP_CONFIG = {
+    atendimento_hero: "5511951797443", // Botão principal do topo
+    servico_2via:     "5511951797443", // Botão de 2ª Via de Boleto
+    servico_suporte:  "5511951797443", // Botão de Suporte Técnico
+    servico_outros:   "5511951797443", // Botão de Outros Assuntos
+    atendimento_final:"5511951797443"  // Botão do final da página
+  };
+</script>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo-section">
+        <div class="logo-text">
+          <h1>Central de Atendimento</h1>
+          <span>Suporte seguro e confiável</span>
+        </div>
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        Atendimento Verificado
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h2>Atendimento <span class="highlight">Seguro e Profissional</span> via WhatsApp</h2>
+        <p>Solicite suporte, 2ª via de boleto e outros serviços com total transparência e segurança. Nosso atendimento é rápido, confiável e sempre disponível para você.</p>
+        
+        <a class="cta-primary" id="btnAtendimento" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-3.055 2.2-5.044 5.91-5.044 9.52 0 1.054.175 2.07.504 3.039l-.713 2.606a.996.996 0 001.213 1.213l2.606-.713a9.99 9.99 0 003.039.504c5.159 0 9.427-4.268 9.427-9.427 0-2.52-.978-4.89-2.753-6.665-1.776-1.776-4.145-2.753-6.665-2.753"/>
+          </svg>
+          Iniciar Atendimento Seguro
+        </a>
+      </div>
+
+      <div class="hero-cards">
+        <a class="service-card" id="svc2Via" href="#">
+          <div class="service-card-content">
+            <div class="service-icon">📄</div>
+            <div class="service-card-text">
+              <strong>2ª Via de Boleto</strong>
+              <span>Solicite sua segunda via</span>
+            </div>
+          </div>
+          <div class="service-card-arrow">→</div>
+        </a>
+
+        <a class="service-card" id="svcSuporte" href="#">
+          <div class="service-card-content">
+            <div class="service-icon">🛠️</div>
+            <div class="service-card-text">
+              <strong>Suporte Técnico</strong>
+              <span>Resolva seus problemas</span>
+            </div>
+          </div>
+          <div class="service-card-arrow">→</div>
+        </a>
+
+        <a class="service-card" id="svcOutros" href="#">
+          <div class="service-card-content">
+            <div class="service-icon">💬</div>
+            <div class="service-card-text">
+              <strong>Outros Assuntos</strong>
+              <span>Fale conosco sobre qualquer coisa</span>
+            </div>
+          </div>
+          <div class="service-card-arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST SECTION -->
+<section class="trust-section">
+  <div class="container">
+    <h2 class="section-title">Por Que Confiar em Nós?</h2>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-item-icon">🔒</div>
+        <strong>Segurança Garantida</strong>
+        <p>Seus dados são protegidos com criptografia de ponta. Atendimento 100% seguro e confiável.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">⚡</div>
+        <strong>Atendimento Rápido</strong>
+        <p>Respostas ágeis e eficientes. Sua solicitação é processada com prioridade máxima.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">✓</div>
+        <strong>Transparência Total</strong>
+        <p>Comunicação clara e honesta. Você sabe exatamente o que esperar em cada etapa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM SECTION -->
+<section class="team-section">
+  <div class="container">
+    <div class="team-content">
+      <div class="team-image" style="background-image:url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663587860859/roGkYFjfQfGdVaUj.PNG')"></div>
+      
+      <div class="team-text">
+        <span class="subtitle">NOSSA EQUIPE</span>
+        <h3>Profissionais Dedicados ao Seu Sucesso</h3>
+        <p>Contamos com uma equipe altamente treinada e comprometida em oferecer o melhor atendimento. Cada membro da nossa equipe é especializado em resolver seus problemas com rapidez e eficiência.</p>
+        
+        <div class="team-list">
+          <div class="team-item">
+            <div class="team-check">✓</div>
+            <div>
+              <strong>Profissionais Certificados</strong>
+              <span>Equipe com experiência comprovada no mercado</span>
+            </div>
+          </div>
+          <div class="team-item">
+            <div class="team-check">✓</div>
+            <div>
+              <strong>Atendimento Humanizado</strong>
+              <span>Tratamento personalizado para cada cliente</span>
+            </div>
+          </div>
+          <div class="team-item">
+            <div class="team-check">✓</div>
+            <div>
+              <strong>Disponibilidade 24/7</strong>
+              <span>Sempre prontos para ajudar quando você precisar</span>
+            </div>
+          </div>
+          <div class="team-item">
+            <div class="team-check">✓</div>
+            <div>
+              <strong>Soluções Rápidas</strong>
+              <span>Resolvemos seus problemas em tempo recorde</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="features-section">
+  <div class="container">
+    <div class="features-content">
+      <div class="features-text">
+        <span class="subtitle">SOLUÇÕES COMPLETAS</span>
+        <h3>Tudo que você precisa na palma da sua mão</h3>
+        <p>Oferecemos um fluxo simples, rápido e seguro para solicitar suporte e serviços. Acreditamos que um bom atendimento consiste em processos transparentes que facilitam seu dia a dia.</p>
+        
+        <div class="features-list">
+          <div class="feature-item">
+            <div class="feature-check">✓</div>
+            <div>
+              <strong>Atendimento 24/7</strong>
+              <span>Disponível sempre que você precisar</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check">✓</div>
+            <div>
+              <strong>Múltiplos Canais</strong>
+              <span>Escolha o serviço que melhor se adequa às suas necessidades</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check">✓</div>
+            <div>
+              <strong>Equipe Especializada</strong>
+              <span>Profissionais treinados para resolver seus problemas</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check">✓</div>
+            <div>
+              <strong>Suporte Personalizado</strong>
+              <span>Soluções adaptadas às suas necessidades específicas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="features-image" style="background-image:url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663587860859/ukrQciyYbDRRWILL.png')">
+        <div class="features-image-content">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS SECTION -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <strong>98%</strong>
+        <span>Taxa de Satisfação</span>
+      </div>
+      <div class="stat-item">
+        <strong>+5K</strong>
+        <span>Clientes Atendidos</span>
+      </div>
+      <div class="stat-item">
+        <strong>3 min</strong>
+        <span>Tempo Médio de Resposta</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES SECTION -->
+<section class="values-section">
+  <div class="container">
+    <h2 class="section-title">Nossos Compromissos</h2>
+    <div class="values-grid">
+      <div class="value-box">
+        <strong>01 ✓ Transparência</strong>
+        <p>Nosso compromisso com a transparência cria confiança e garante que você sempre saiba o que esperar.</p>
+      </div>
+      <div class="value-box">
+        <strong>02 ✓ Seriedade</strong>
+        <p>Relações sólidas baseadas em integridade. Levamos cada cliente e cada demanda com máxima seriedade.</p>
+      </div>
+      <div class="value-box">
+        <strong>03 ✓ Ética</strong>
+        <p>Atuação ética e responsável em todas as nossas interações e processos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Pronto para começar?</h2>
+    <p>Clique abaixo e inicie seu atendimento de forma segura e profissional</p>
+    <a class="cta-secondary" id="btnCTAFinal" href="#">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-3.055 2.2-5.044 5.91-5.044 9.52 0 1.054.175 2.07.504 3.039l-.713 2.606a.996.996 0 001.213 1.213l2.606-.713a9.99 9.99 0 003.039.504c5.159 0 9.427-4.268 9.427-9.427 0-2.52-.978-4.89-2.753-6.665-1.776-1.776-4.145-2.753-6.665-2.753"/>
+      </svg>
+      Iniciar Atendimento no WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>© <span id="y"></span> Central de Atendimento • Todos os direitos reservados</p>
+    <p style="margin-top:12px;font-size:12px">Atendimento seguro e profissional | Proteção de dados garantida</p>
+  </div>
+</footer>
+
+<script>
+  function waLink(numero, servico){
+    const msg = "Olá! Gostaria de atendimento sobre: " + servico + ". Agradeço a atenção!";
+    return "https://wa.me/" + numero + "?text=" + encodeURIComponent(msg);
+  }
+
+  function atualizarLinks() {
+    // 1. Botão Hero (Topo)
+    const btnHero = document.getElementById("btnAtendimento");
+    if(btnHero) btnHero.href = "https://wa.me/" + WHATSAPP_CONFIG.atendimento_hero;
+
+    // 2. Botão de 2ª Via
+    const svc2Via = document.getElementById("svc2Via");
+    if(svc2Via) svc2Via.href = waLink(WHATSAPP_CONFIG.servico_2via, "2ª Via de Boleto");
+
+    // 3. Botão de Suporte Técnico
+    const svcSuporte = document.getElementById("svcSuporte");
+    if(svcSuporte) svcSuporte.href = waLink(WHATSAPP_CONFIG.servico_suporte, "Suporte Técnico");
+
+    // 4. Botão de Outros Assuntos
+    const svcOutros = document.getElementById("svcOutros");
+    if(svcOutros) svcOutros.href = waLink(WHATSAPP_CONFIG.servico_outros, "Outros Assuntos");
+
+    // 5. Botão Final da Página
+    const btnFinal = document.getElementById("btnCTAFinal");
+    if(btnFinal) btnFinal.href = "https://wa.me/" + WHATSAPP_CONFIG.atendimento_final;
+  }
+
+  // Executar atualização assim que a página carregar
+  window.onload = atualizarLinks;
+
+  // Ano no footer
+  const yearSpan = document.getElementById("y");
+  if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+  // Analytics: Rastrear cliques nos CTAs
+  document.querySelectorAll('.cta-primary, .cta-secondary, .service-card').forEach(btn => {
+    btn.addEventListener('click', function() {
+      console.log('CTA clicado:', this.textContent.trim());
+    });
+  });
+</script>
+
+</body>
+</html>
